@@ -176,12 +176,25 @@ def build(path=DEFAULT_PATH, root=RAW_ROOT, dim=64, steps=3000, width=64, shift=
     return out
 
 
+def _ensure_raw(root):
+    """Download the Omniglot images into `root` if they are not there yet (~40 MB)."""
+    if not os.path.isdir(os.path.join(root, "omniglot-py", "images_background")):
+        from torchvision.datasets import Omniglot
+        print(f"downloading the Omniglot images (~40 MB) into {root} ...", flush=True)
+        for background in (True, False):
+            Omniglot(root, background=background, download=True)
+    return root
+
+
 def plot_examples(task, n_classes=4, n_drawings=6, root=RAW_ROOT, save=None):
-    """Show a few drawings of a few training classes (needs the raw images in `root`)."""
+    """Show a few drawings of a few training classes. Downloads the raw
+    Omniglot images into `root` on first use (the repo only ships embeddings)."""
     import matplotlib.pyplot as plt
     from PIL import Image
 
-    meta, root = task.meta, _resolve(root)
+    meta, root = task.meta, _ensure_raw(_resolve(root))
+    if meta is None:
+        raise ValueError("plot_examples needs the Omniglot task (dataset='omniglot')")
     fig, axes = plt.subplots(n_classes, n_drawings, figsize=(1.3 * n_drawings, 1.5 * n_classes))
     for i, c in enumerate(task.train_classes[:n_classes].tolist()):
         d = os.path.join(root, meta["dirs"][c])

@@ -25,7 +25,7 @@ A transformer can solve a classification problem in two ways:
 
 1. Click the **Open in Colab** badge above (or open `notebooks/icl_vs_iwl.ipynb` from GitHub via File → Open notebook → GitHub in Colab).
 2. Set the runtime to a GPU: **Runtime → Change runtime type → T4 GPU**.
-3. Run the first two cells. They clone this repo into the Colab machine and install it (about 30 seconds; the Omniglot embeddings are included in the repo, so there is nothing to download).
+3. Run the first two cells. They clone this repo into the Colab machine (a few seconds; torch is preinstalled on Colab and the Omniglot embeddings are included in the repo). Running the setup cell again later pulls the latest version of the repo.
 4. Work through the notebook. Sections 1 to 3 are reading and running; section 4 is your experiment.
 
 To edit the model code on Colab, open the **Files** pane on the left, go to `icl-iwl-exercise/icl_iwl/` and double-click `model.py`. Save with Ctrl/Cmd-S, then run the reload cell in section 4 (`icl_iwl.reload()` followed by the import line) so the notebook sees your change. Alternatively, define your variant as a subclass of `Model` in a notebook cell and pass it as `model_cls=` (there is a template cell in section 4).
@@ -68,7 +68,7 @@ Everything is a keyword override of `Config`:
 from icl_iwl import train, compare, plot_runs, plot_attention, plot_examples
 
 model, task, log = train(n_classes=4096, p_bursty=1.0, steps=4000)
-plot_examples(task)              # a few drawings of a few training classes and their labels
+plot_examples(task)              # a few drawings of a few training classes (downloads the images, ~40 MB, on first use)
 plot_runs({"baseline": [log]})
 plot_attention(model, task)
 
