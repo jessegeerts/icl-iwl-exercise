@@ -20,3 +20,13 @@ __all__ = [
     "compare", "plot_attention", "plot_dynamics", "plot_grid", "plot_runs", "plot_sweeps",
     "load_omniglot", "plot_examples", "induction_measures",
 ]
+
+
+def reload():
+    """Re-import the package after editing its files (for notebooks where
+    `%autoreload` is unavailable). Re-run your `from icl_iwl import ...` afterwards."""
+    import importlib
+    import sys
+    for name in ["config", "data", "model", "analysis", "train", "plotting", "omniglot"]:
+        importlib.reload(sys.modules[f"{__name__}.{name}"])
+    importlib.reload(sys.modules[__name__])

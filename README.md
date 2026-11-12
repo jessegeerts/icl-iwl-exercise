@@ -28,7 +28,7 @@ A transformer can solve a classification problem in two ways:
 3. Run the first two cells. They clone this repo into the Colab machine and install it (about 30 seconds; the Omniglot embeddings are included in the repo, so there is nothing to download).
 4. Work through the notebook. Sections 1 to 3 are reading and running; section 4 is your experiment.
 
-To edit the model code on Colab, open the **Files** pane on the left, go to `icl-iwl-exercise/icl_iwl/` and double-click `model.py`. Save with Ctrl/Cmd-S; the notebook's `autoreload` cell picks up the change on the next `train(...)` call. Alternatively, define your variant as a subclass of `Model` in a notebook cell and pass it as `model_cls=` (there is a template cell in section 4).
+To edit the model code on Colab, open the **Files** pane on the left, go to `icl-iwl-exercise/icl_iwl/` and double-click `model.py`. Save with Ctrl/Cmd-S, then run the reload cell in section 4 (`icl_iwl.reload()` followed by the import line) so the notebook sees your change. Alternatively, define your variant as a subclass of `Model` in a notebook cell and pass it as `model_cls=` (there is a template cell in section 4).
 
 Colab forgets everything when the runtime disconnects, so keep your notes and your plot in the notebook (File → Save a copy in Drive) or download them.
 

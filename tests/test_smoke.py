@@ -69,3 +69,10 @@ def test_model_cls_hook():
             self.ln_out = torch.nn.Identity()
     model, _, log = train(verbose=False, dataset="gaussian", model_cls=NoLayerNorm, **TINY)
     assert isinstance(model, NoLayerNorm) and len(log["step"]) == 2
+
+
+def test_reload():
+    import icl_iwl
+    icl_iwl.reload()
+    from icl_iwl import train as train2
+    assert callable(train2)
