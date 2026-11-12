@@ -1,4 +1,4 @@
-# icl-iwl-coding-exercise
+# ICL vs IWL exercise
 
 Teaching repo: in-context vs in-weights learning in a small transformer
 (Chan et al. 2022 / Reddy 2023). Students modify the model and compare against
@@ -11,9 +11,9 @@ the baseline. See README.md and EXERCISE.md.
   baseline still runs and `compare` can train both.
 - `icl_iwl/data.py` generates batches; "icl" batches must always contain the
   answer, "iwl" batches never. `tests/test_smoke.py` checks this.
-- Items are Omniglot embeddings from `data/omniglot.pt` (gitignored; built by
-  `python scripts/prepare_omniglot.py`, which trains the CNN in
-  `icl_iwl/omniglot.py`). `dataset="gaussian"` needs no file; tests use it.
+- Items are Omniglot embeddings from `data/omniglot.pt`, built by
+  `python scripts/prepare_omniglot.py` (trains the CNN in `icl_iwl/omniglot.py`;
+  the instructor repo gitignores the file, the student repo ships it). `dataset="gaussian"` needs no file; tests use it.
 - Run `pytest` (CPU, ~10 s) after any change. Full experiments need a GPU.
 - `Attention.forward` stores `self.pattern` for `plot_attention` and for the
   progress measures in `icl_iwl/analysis.py`; keep that if you rewrite attention.
